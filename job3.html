@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+</head>
+<style>
+   *{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+section {
+  background: #fff;
+ }
+ .hidden {
+   opacity: 0;
+   filter: blur(5px);
+   transform: translateY(-100px);
+   transition: all 1s;
+ }
+ @media (prefres-reduced-motion) {
+   .hidden {
+     transition: 0;
+   }
+ }
+ .show {
+   opacity: 1;
+   filter: blur(0);
+   transform: translateY(0);
+ }
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.3rem 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: #3a3aea;
+}
+header::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(100px);
+  z-index: -1;
+}
+header.sticky {
+  background: #5755fe;
+}
+header.sticky .logo,
+header.sticky .navbar a,
+header.sticky .icon,
+header.sticky .link a {
+  color: #fff;
+}
+.logo {
+  font-size: 30px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
+}
+.navbar a {
+  font-size: 17px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 2.5rem;
+  transition: 0.3s ease;
+  font-family: "Crimson Text", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.navbar a:hover {
+  transform: scale(1.2) translateY(-10px);
+}
+#check {
+  display: none;
+}
+.icon {
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  right: 5%;
+}
+.container{
+   margin-top: 120px;
+   margin-left: 100px;
+}
+.fa-map-pin{
+  color: red;
+}
+.fa-envelope{
+  color: #3a3aea;
+}
+.fa-clock{
+  color: #3a3aea;
+}
+.fa-money-bill{
+  color: green;
+}
+.img{
+  width: 100px;
+  margin-left: 30px;
+}
+.mwah1{
+  margin-top: 20px;
+  font-size: 25px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1px;
+}
+.mwah2{
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+.mwah3{
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.mwah4{
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.mwah5{
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.mwah6{
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.detail1-con1 ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.detail1-con2{
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+.detail1-con2 .btn1{
+  background: #3a3aea;
+  color: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.detail1-con2 .btn2{
+  background: #fff;
+  color: #3a3aea;
+  border: 2px solid #3a3aea;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.detail1-con2 .btn2 i{
+  color: #3a3aea;
+  transition: none;
+  transform: none;
+  margin-top: 0;
+}
+.persyaratan{
+  margin-top: 70px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  width: 900px
+}
+.persyaratan ul{
+  font-family: "Crimson Text", serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-left: 30px;
+  margin-top: 20px;
+  font-size: 18px;
+}
+.skill{
+  margin-top: 70px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+.skill ul{
+  margin-top: 20px;
+  margin-left: 30px;
+  font-family: "Crimson Text", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+}
+.tugas{
+  margin-top: 70px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  width: 900px;
+}
+.tugas ul{
+  margin-top: 20px;
+  margin-left: 30px;
+  font-family: "Crimson Text", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+}
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 250px;
+  margin-top: 130px;
+  padding: 40px 0;
+  background: #3a3aea;
+}
+.footer .social {
+  text-align: center;
+  padding-bottom: 25px;
+  color: rgb(0, 0, 0);
+}
+.footer .social a {
+  font-size: 20px;
+  border: 2px solid #fff;
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  margin: 0 10px;
+  transition: 0.3s ease;
+}
+.footer .social a:hover {
+  transform: scale(1.2) translateY(-10px);
+  background-color: #000000;
+  color: #3a3aea;
+}
+.footer ul {
+  margin-top: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1.6rem;
+  margin-bottom: 0;
+  text-align: center;
+}
+.footer ul li a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  border-bottom: 3px solid transparent;
+  transition: 0.3s ease;
+}
+.footer ul li a:hover {
+  border-bottom: 3px solid rgb(0, 0, 0);
+}
+.footer ul li {
+  display: inline-block;
+  padding: 0 15px;
+}
+.footer .copyright {
+  margin-top: 50px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+}
+#tombol{
+  padding: 8px 8px;
+  background: #3a3aea;
+  color: #fff;
+  font-size: 17px;
+  font-family: "Crimson Text", serif;
+  font-weight: 900;
+  font-style: normal;
+  border: none;
+  border-radius: 10px;
+  float: right;
+  position: fixed;
+  z-index: 1111;
+  top: 520px;
+  right: 20px;
+}
+@media (max-width: 480px){
+   .container{
+      margin-left: 70px;
+   }
+   .icon {
+      display: inline-flex;
+    }
+    #check:checked ~ .icon #menu-icon {
+      display: none;
+    }
+    .icon #close-icon {
+      display: none;
+    }
+    #check:checked ~ .icon #close-icon {
+      display: block;
+    }
+    .navbar {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(50px);
+      box-shadow: 0.5rem 1rem rgba(0, 0, 0, 0.1);
+      transition: 0.3s ease;
+      overflow: hidden;
+    }
+    #check:checked ~ .navbar {
+      height: 230px;
+    }
+    .navbar a {
+      display: block;
+      font-size: 16px;
+      margin: 1.5rem   0;
+      text-align: center;
+      transform: translateY(-50px);
+      transition: 0.3 ease;
+      margin-left: -12px;
+    }
+    #check:checked ~ .navbar a {
+      transform: translateY(0);
+      opacity: 1;
+      transition-delay: calc(0.15s * var(--1));
+    }
+    .footer{
+      margin-top: 130px;
+      width: 1000px;
+    }
+}
+
+@media (max-width: 600px){
+   .container{
+      margin-left: 50px;
+   }
+   .icon {
+      display: inline-flex;
+    }
+    #check:checked ~ .icon #menu-icon {
+      display: none;
+    }
+    .icon #close-icon {
+      display: none;
+    }
+    #check:checked ~ .icon #close-icon {
+      display: block;
+    }
+    .navbar {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(50px);
+      box-shadow: 0.5rem 1rem rgba(0, 0, 0, 0.1);
+      transition: 0.3s ease;
+      overflow: hidden;
+    }
+    #check:checked ~ .navbar {
+      height: 230px;
+    }
+    .navbar a {
+      display: block;
+      font-size: 16px;
+      margin: 1.5rem   0;
+      text-align: center;
+      transform: translateY(-50px);
+      transition: 0.3 ease;
+      margin-left: -12px;
+    }
+    #check:checked ~ .navbar a {
+      transform: translateY(0);
+      opacity: 1;
+      transition-delay: calc(0.15s * var(--1));
+    }
+    .footer{
+      margin-top: 130px;
+      width: 1000px;
+    }
+}
+</style>
+<body>
+   <header>
+      <a href="#" class="logo">Job Hive</a>
+      <input type="checkbox" id="check" />
+      <label for="check" class="icon">
+        <i class="fa fa-bars" id="menu-icon"></i>
+         <i class="fas fa-times" id="close-icon"></i>
+      </label>
+      <nav class="navbar">
+        <a href="index.html" style="--1: 0">Beranda</a>
+        <a href="carikerja.html" style="--1: 1">Cari Pekerjaan</a>
+        <a href="#" style="--1: 2">Tentang Kami</a>
+        <a href="#" style="--1:3"><i class="fa fa-user"></i></a> 
+      </nav>
+    </header>
+    <section class="hidden">
+      <div class="container">
+         <div class="detail1">
+            <img src="https://images.glints.com/unsafe/160x0/glints-dashboard.s3.amazonaws.com/company-logo/8d859ca4ee31e41a66d9b9892fd723d8.jfif" class="img">
+              <h4 class="mwah1">Data Engineer</h6>
+              <h4 class="mwah2">Pt. Berpikir Revolusioner Indonesia</h4>
+              <h6 class="mwah3"><i class="fa fa-map-pin"></i> Jakarta</h6>
+              <h6 class="mwah4"><i class="fa fa-envelope"></i> Pengembang web serbaguna yang mahir dalam platform pemrograman front-end dan back-end.</h6>
+              <h6 class="mwah5"><i class="fa fa-clock"></i> Full time . Remote</h6>
+              <h6 class="mwah6"><i class="fa fa-money-bill"></i> Rp500.000-Rp1.000.000</h6>
+              <div class="detail1-con1">
+                <ul>
+                <li style="list-style: none;"><p>Diposting 3hari yang lalu</p></li>
+                <li><p>Diperbarui 3 menit yang lalu</p></li>
+              </ul>
+              </div>
+              <div class="detail1-con2">
+                <button type="button" class="btn1"> Lamar Sekarang</button>
+                <button type="button" class="btn2"><i class="fa fa-bookmark" class="lol"></i> Tandai</button>
+                <button type="button" class="btn2"><i class="fa fa-share"></i> Bagikan</button>
+              </div>
+              <div class="persyaratan">
+                <h1>Persyaratan</h1>
+                <ul>
+                  <li>Pengalaman minimal 3 tahun di bidang pengembangan aplikasi Web/Mobile.</li>
+                  <li>Memiliki pengalaman di aplikasi berbasis cloud seperti AWS, AZURE.</li>
+                  <li>Kemahiran dalam pengkodean, pembuatan, pengujian, dan penerapan menggunakan HTML, CSS, JavaScript, dan kerangka kerja seperti Angular JS, React, Django, Flask, Implementasi REST API.</li>
+                  <li>Keahlian dalam bahasa sisi server seperti Python, PHP, Node.js, dan teknologi berbasis server terbaru.</li>
+                  <li>Keakraban dengan database seperti MySQL, MS Access, MS SQL server, Oracle, RDMS dan query SQL</li>
+                  <li>Pengalaman menyesuaikan platform CMS seperti WordPress dan Magento, dan OpenCart</li>
+                </ul>
+              </div>
+              <div class="skill">
+                <h1>Skill</h1>
+                <ul>  
+                <li><p>Pengembangan Aplikasi Mobile</p></li>
+                <li><p>Bahasa Pemrograman</p></li>
+                <li><p>Web Development</p></li>
+              </ul>
+            </div>
+              <div class="tugas">
+                <h1>Tugas</h1>
+                <ul>
+                  <li>Kelola pembaruan dan pengoptimalan situs web menggunakan platform seperti WordPress, OpenCart, dan Magento.</li>
+                  <li>Merancang dan mengembangkan konten situs web, grafik, dan tata letak menggunakan Adobe Photoshop, Illustrator, dan InDesign.</li>
+                  <li>Kemampuan membuat kode dalam CSS3, HTML5, JavaScript, SDLC, PHP, JQuery, AJAX, JSON, XML, DHTML, Bootstrap, Foundation, Materialize CSS, ASP.NET, C#, PHP Framework MVC , Code ignition, React.js, Yii2 , Laravel, XAMP,WAMP ,PHPMyAdminLayanan Web , API , SOAP</li>
+                  <li>Keterampilan multimedia dan desain grafis yang kuat dalam Photoshop, Adobe Illustrator, Adobe Flash Animation, After Effects, Adobe Premiere</li>
+                  <li>Terlibat dalam keseluruhan SDLC – pengumpulan persyaratan, desain, pengembangan, pengujian, penerapan, dan dukungan.</li>
+                </ul>
+              </div>
+          </div><!--detail1 -->
+      </div>
+    </section>
+    <button id="tombol" class="tombol"><i class="fa fa-arrow-up"></i></button>
+    <!--footer-->
+<footer class="footer">
+<div class="social">
+  <a href="#"><i class="fab fa-linkedin"></i></a>
+  <a href="#"><i class="fab fa-facebook"></i></a>
+  <a href="#"><i class="fab fa-instagram"></i></a>
+  <a href="#"><i class="fab fa-twitter"></i> </a>
+</div>   
+
+<ul class="list">
+  <li><a href="#">Beranda</a></li>
+  <li><a href="#">Cari Pekerjaan</a></li>
+  <li><a href="#">Tentang Kami</a></li>
+  <li><a href="#">Masuk</a></li>
+  <li><a href="#">Daftar</a></li>
+</ul>
+
+<p class="copyright">
+  © Sri Kusuma | All Rights Reserved
+</p>
+
+</footer>
+   <script>
+       var nav = document.querySelector("header");
+window.addEventListener("scroll", () => {
+  if (document.documentElement.scrollTop > 20) {
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+});
+
+const getTombol = document.getElementById("tombol");
+window.addEventListener("scroll", function(){
+   if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+      getTombol.style.display = "block"
+   }else{
+      getTombol.style.display = "none";
+   }
+});
+getTombol.addEventListener("click", function(){
+   document.body.scrollTop = 0;
+   document.documentElement.scrollTop = 0;
+});
+
+const observer = new IntersectionObserver((entries) =>{
+   entries.forEach((entry) =>{
+      console.log(entry)
+      if(entry.isIntersecting){
+         entry.target.classList.add('show');
+      } else{
+         entry.target.classList.remove('show');
+      }
+   });
+});
+
+const hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el) => observer.observe(el));
+   </script>
+</body>
+</html>
